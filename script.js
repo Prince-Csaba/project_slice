@@ -6,12 +6,18 @@ function pageLoad () {
   root = document.getElementById("root");
   
   //egy változóba eltárolni egy max értéket, amivel dolgozunk
-  let maxLines = 10;
+  let maxLines = 1;
   //elmenteni egy sort a változóba: div, checkbox, 1 text input, 1 button
-  let todoElement = `<div><input type="checkbox"><input type ="text"><button>Remove</button></div>`;
+  let todoElement = `
+  <div>
+    <input type="checkbox">
+    <input type ="text">
+    <button class="removeButton">Remove</button>
+  </div>`;
   //lesz egy for amivel hozzáadjuk a roothoz
-  for (i = 0; i < 10; i++) {
+  for (let i = 0; i < maxLines; i++) {
     root.insertAdjacentHTML("beforeend", todoElement);
+    //TODO: itt kellene rátenni az eseményfigyelőt, remove-t
   }
 
   //kell egy gomb, amivel hozzáadunk a listán kívükre egy gombot - insertadjest: afterend
@@ -20,13 +26,26 @@ function pageLoad () {
   
   //klikk esemény a gombhoz, a változóban elárolt elemet hozzáadjuk a változóhoz
   document.querySelector(".addButton").addEventListener("click", function () {
-    root.insertAdjacentHTML("beforeend", todoElement)
+    root.insertAdjacentHTML("beforeend", todoElement);
   });
   
   //classnév alapján kijelölöm az összes törlés gombot és elmentem egy változóba
+  let todos = root.querySelectorAll("div button");
+  //console.log(todos);
   
-
+  
+  function remove(e) {
+  //  todos[i].parentElement.remove();
+    e.target.parentElement.remove();
+  };
+  
+  
   //for ciklus - ráadni egy klikk eseményt mindegyikre
+  for (let i = 0; i < todos.length; i++) {
+    todos[i].classList.add("removeButton");
+    todos[i].addEventListener("click", remove);
+  }
+  //todos.addEventListener("click", function () {console.log("bree");});
   //hogyan jelölöm ki az elemet, amit ki szeretnék törölni?
 
   //
