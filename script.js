@@ -6,7 +6,7 @@ function pageLoad () {
   root = document.getElementById("root");
   
   //egy változóba eltárolni egy max értéket, amivel dolgozunk
-  let maxLines = 1;
+  let maxLines = 10;
   //elmenteni egy sort a változóba: div, checkbox, 1 text input, 1 button
   let todoElement = `
   <div>
@@ -33,8 +33,7 @@ function pageLoad () {
   let todos = root.querySelectorAll("div button");
   //console.log(todos);
   
-  
-  function remove(e) {
+    function remove(e) {
   //  todos[i].parentElement.remove();
     e.target.parentElement.remove();
   };
@@ -47,8 +46,6 @@ function pageLoad () {
   }
   //todos.addEventListener("click", function () {console.log("bree");});
   //hogyan jelölöm ki az elemet, amit ki szeretnék törölni?
-
-  //
 
 }
 
